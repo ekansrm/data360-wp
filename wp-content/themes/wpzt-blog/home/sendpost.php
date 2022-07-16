@@ -10,7 +10,7 @@
 	if(empty($user)){
 		wp_redirect(get_login_url());
 	}else{
-		if(!user_can_sendpost($user)){
+		if(!user_can_sendpost(new WP_User($user))){
 			wp_redirect(add_query_arg(['errormsg'=>'暂无权限发布文章，请联系管理员'],home_url('usercenter')));
 		}
 	}

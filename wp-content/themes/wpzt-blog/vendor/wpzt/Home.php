@@ -96,7 +96,11 @@ class Home{
 	function image_alttitle( $imgalttitle ){
         global $post;
         $category = get_the_category();
-        $flname=$category[0]->cat_name;
+        if(sizeof($category) > 0) {
+            $flname=$category[0]->cat_name;
+        } else {
+            $flname = 'none';
+        }
         $btitle = get_bloginfo();
         $imgtitle = $post->post_title;
         $imgUrl = "<img\s[^>]*src=(\"??)([^\" >]*?)\\1[^>]*>";

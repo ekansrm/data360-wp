@@ -9,7 +9,7 @@ define('WPZT_CSS',WPZT_URL.'/static/css');
 define('WPZT_IMG',WPZT_URL.'/static/images');
 define('WPZT_DIR',get_template_directory());
 define('WPZT_CACHE',WP_CONTENT_DIR.'/cache');
-define('WPZT_CACHE',str_replace('/',DS,WP_CONTENT_DIR.'/cache/'));
+# define('WPZT_CACHE',str_replace('/',DS,WP_CONTENT_DIR.'/cache/'));
 define('WPZT_VERSION',1.1);	//程序版本号
 
 include_once WPZT_DIR.'/vendor/autoload.php';
