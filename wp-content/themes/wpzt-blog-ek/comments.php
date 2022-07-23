@@ -34,8 +34,8 @@
  var facial="<?php echo WPZT_IMG.'/facial/'?>";
 </script>
 <div id="comments" class="entry-comments">
-    <?php 
-	
+    <?php
+        global $post_id;
 		comment_form([
 			'title_reply_before' => '<div class="comment-title"><h3><i class="mian-bdcolor"></i>',
 			'title_reply_after'  => '</h3></div>',
