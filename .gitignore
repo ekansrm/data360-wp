@@ -106,4 +106,5 @@ Thumbs.db
 # track these mu-plugins, plugins, and themes
 # add your own entries here
 !wp-content/themes/wpzt-blog
+!wp-content/themes/wpzt-blog-ek
 !wp-content/plugins/wpzt-question
