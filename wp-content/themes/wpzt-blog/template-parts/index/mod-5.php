@@ -1,5 +1,10 @@
 <?php
-	$catid=$mod['index-mod-one-cat'];
+    global $mod;
+    if(in_array('index-mod-one-cat', $mod)) {
+        $catid=$mod['index-mod-one-cat'];
+    } else {
+        $catid = null;
+    }
 	$args['posts_per_page']=8;
 	if(!empty($catid)){
 		$args['cat']=$catid;
