@@ -2645,10 +2645,16 @@ border-radius:4px;
 	.w-tjydby-r ul {
 		padding-left: 0;
 	}
+	.w-tjydby-r ol {
+		padding-left: 0;
+	}
 	.comment-respond {
 		padding: 10px;
 	}
 	.w-wznr-body ul{
+		padding-left:20px;
+	}
+	.w-wznr-body ol{
 		padding-left:20px;
 	}
 	.havecomment-list{
