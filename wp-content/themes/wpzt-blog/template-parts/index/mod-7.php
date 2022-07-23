@@ -1,15 +1,11 @@
 <?php
-	$catid=$mod['index-mod-one-cat'];
-	$args['posts_per_page']=8;
-	if(!empty($catid)){
-		$args['cat']=$catid;
-	}
+	$paged=empty(get_query_var('paged'))?1:get_query_var('paged');	
+	$args=['paged'=>$paged];
 	$the_query=get_cache_query($args);
 ?>
 	<div class='homebk4  homebk'>
 		<div class='homebk-title'>
 		<h2><span><?php echo $mod['title'];?></span></h2>
-		<a href='<?php echo get_category_link($catid);?>' target="_blank" title='<?php echo $mod['title'];?>'>更多>></a>
 		</div>
 		<div class='homebk4-ctn'>
 		<?php
@@ -37,4 +33,14 @@
 				wp_reset_postdata();
 			}?>
 	 </div>
+	
+		<div class='w-fylink'>
+		 <?php if($mod['showpage']){
+			 letan_page($the_query,$paged);
+			 }elseif($the_query->max_num_pages>1){?>
+	<div class="load-more-wrap">
+		<a class="load-more j-load-more" data-page="<?php echo wpzt_Enc($paged);?>" href="javascript:;">点击查看更多</a>
+	</div>		 
+<?php } ?>
+		</div>
 	 </div>

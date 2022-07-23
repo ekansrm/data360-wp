@@ -88,7 +88,8 @@ CSF::createSection($prefix,array(
 						'3'=>WPZT_IMG.'/mod-3.png',
 						'4'=>WPZT_IMG.'/mod-4.png',
 						'5'=>WPZT_IMG.'/mod-5.png',
-						'6'=>WPZT_IMG.'/mod-ad.png'
+						'6'=>WPZT_IMG.'/mod-ad.png',
+						'7'=>WPZT_IMG.'/mod-6.png'
 					]
 				),
 				array(
@@ -122,7 +123,7 @@ CSF::createSection($prefix,array(
 					'id'=>'title',
 					'type'=>'text',
 					'title'=>'模块标题',
-					'dependency'=>array('index-mod','any','2,3,4,5')
+					'dependency'=>array('index-mod','any','2,3,4,5,7')
 				),
 				array(
 					'id'=>'index-mod-2-cat1',
@@ -169,6 +170,13 @@ CSF::createSection($prefix,array(
 					'title'=>'移动端广告位',
 					'dependency'=>array('index-mod','==','6'),
 					'desc'=>'<xmp>宽度：450px，直接填写广告HTML代码，图片链接广告代码参考：<a href="广告链接" target="_blank"><img src="图片链接"></a></xmp>'
+				),
+				array(
+					'id'=>'showpage',
+					'type'=>'switcher',
+					'title'=>'显示分页(不显示则为ajax加载更多)',
+					'default'=>false,
+					'dependency'=>array('index-mod','==','7')
 				)
 				
 				
@@ -781,7 +789,19 @@ CSF::createSection($prefix,array(
 			'type'=>'switcher',
 			'desc'=>'发布文章时自动清除缓存，如不选择则手动清除缓存',
 			'default'=>false
-		)
+		),
+		array(
+		    'id'=>'home-cache',
+		    'title'=>'缓存首页',
+		    'type'=>'switcher',
+		    'default'=>true
+		    ),
+		array(
+		      'id'=>'category-cache',
+		      'title'=>'缓存分类页',
+		      'type'=>'switcher',
+		      'default'=>true
+		    )
 		
 		
 	]

@@ -1,6 +1,6 @@
 /*!
- * 商城
- * 更新于2022-07-15 14:00:00, WM
+ * blog
+ * 更新于2020-12-22
  * 版权归属wpzt.net
  */
 
@@ -25,6 +25,8 @@ a:hover,a:active {text-decoration:none;}
 button,input,button:focus,input:focus {outline:none;}/*去掉点击时的边框*/
 ul,li {margin:0;padding:0}
 li {list-style:none;}
+ol>li{list-style-type: decimal!important;}
+ol>li::marker{font-weight:600;}
 img {object-fit:cover;}/*图片全覆盖且不变形*/
 h1,h2,h3,h4,h5,h6 {margin-top:0;padding:0;margin-bottom:0;}
 h1{font-size:26px;}
@@ -1330,17 +1332,12 @@ footer span{
 }
 .w-wznr-body p {
 	margin-bottom:16px;
-	text-indent:0px;
+	text-indent:30px;
 }
 .w-wznr-body img {
 	width:50%;
 	margin:20px auto;
 	display:block;
-}
-.w-wznr-body a {
-    color: #007bff;
-    transition: 0.2s;
-    -webkit-transition: 0.2s;
 }
 blockquote:before {
     position: absolute;
@@ -1368,35 +1365,15 @@ blockquote{
 	margin-bottom:20px;
 	text-align: justify;
 }
-
 .w-wznr-body ul{
-	margin-bottom:20px;
 	padding-left:50px;
+	margin-bottom:30px;
 }
-
 .w-wznr-body ul li{
 	list-style-type:disc;
 }
-
-.w-wznr-body li ul{
-	margin-bottom:0px;
-}
-
-.w-wznr-body ol{
-    margin-bottom:20px;
-	padding-left:50px;
-}
-
-.w-wznr-body ol li{
-	list-style-type:decimal;
-}
-
-.w-wznr-body li ol{
-	margin-bottom:0px;
-}
-
 .w-wznr-body h2{
-	font-size:24px;
+	font-size:22px;
 	font-weight:600;
 	border-bottom:1px #dedede solid;
 	padding-bottom:10px;
@@ -1414,28 +1391,15 @@ blockquote{
     bottom: -2px;
 }
 .w-wznr-body h3{
-	font-size:22px;
-	font-weight:600;
-	margin-bottom:15px;
-	margin-top:30px;
-}
-.w-wznr-body h4{
 	font-size:20px;
 	font-weight:600;
 	margin-bottom:15px;
 	margin-top:30px;
 }
-.w-wznr-body h5{
-	font-size:18px;
-	font-weight:600;
-	margin-bottom:15px;
-	margin-top:30px;
-}
-.w-wznr-body h6{
-	font-size:16px;
-	font-weight:600;
-	margin-bottom:15px;
-	margin-top:30px;
+.w-wznr-body h4,.w-wznr-body h5,.w-wznr-body h6{
+    margin-bottom: 10px;
+    margin-top:18px;
+    font-weight: 400;
 }
 .w-wznr-body img{
 	width:auto;
@@ -1820,6 +1784,7 @@ blockquote{
 }
 .comment-respond{
 	padding: 10px 20px;
+}
 }
 .comment-respond .comment-title h3,.havecomment-list .comment-title h3{
 	padding:0;
@@ -2248,6 +2213,54 @@ border-radius:4px;
 		display:none;
 	}
 
+@media (min-width: 769px) and (max-width: 1100px){
+	body{
+		width:100%;
+		overflow-x:hidden;
+	}
+	.homebknav{
+		display:none;
+	}
+	.homebody{
+		padding-left:0;
+	}
+	.container {
+		padding-left:15px;
+		padding-right:15px;
+	}
+	.homebk-ctn {
+		width: 68%;
+	}
+	.sidebar {
+		width: 30%;
+	}
+	.menunav .navul > li > a{
+		display:block;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size:15px;
+		min-width: 90px;
+	}
+	.pagebody .sidebar{
+		display:none;
+	}
+	.pagebody .homebk-ctn{
+		width:100%;
+	}
+	.logina-btn{
+		right: 10px;
+	}
+	.logina-btn > div:before{
+		left: auto;
+		right:2px;
+	}
+	
+	
+	
+	
+	
+}
+
 @media (max-width:768px){
 	
 	.container{
@@ -2445,7 +2458,7 @@ border-radius:4px;
 	
 }
 
-@media (max-width:414px){
+@media (max-width:600px){
 	.banner img {
 		height: 190px;
 	}
@@ -2595,16 +2608,10 @@ border-radius:4px;
 	.w-tjydby-r ul {
 		padding-left: 0;
 	}
-	.w-tjydby-r ol {
-		padding-left: 0;
-	}
 	.comment-respond {
 		padding: 10px;
 	}
 	.w-wznr-body ul{
-		padding-left:20px;
-	}
-	.w-wznr-body ol{
 		padding-left:20px;
 	}
 	.havecomment-list{
@@ -2643,7 +2650,8 @@ border-radius:4px;
 	}
 } 
 
-
+.load-more-wrap{padding:10px 0;}
+.load-more{width:150px;display: block!important;padding: 10px;color: #999;line-height: 1.4;font-size: 14px;text-align: center;border: 1px solid #e5e5e5;border-radius: 3px;max-width: none!important;}
 
 
 

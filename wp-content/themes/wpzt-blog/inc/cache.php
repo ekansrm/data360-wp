@@ -259,5 +259,34 @@ if(!is_admin()){
 	add_filter('wp_nav_menu','set_menu_cache',10,2);
 }
 
+function request_uri() {
+      if (isset($_SERVER['REQUEST_URI'])){
+          $uri = $_SERVER['REQUEST_URI'];
+     }else{
+         if (isset($_SERVER['argv'])){
+            $uri = $_SERVER['PHP_SELF'] .'?'. $_SERVER['argv'][0];
+        }else{
+             $uri = $_SERVER['PHP_SELF'] .'?'. $_SERVER['QUERY_STRING'];
+         }
+     }
+     return $uri;
+ }
 
+function begin_page_cache(){
+    $key=md5('page'.request_uri());
+    if(Cache::has($key)){
+        echo Cache::get($key);
+        return true;
+    }else{
+       // ob_flush();
+        ob_start();
+		return false;
+    }
+}
+
+function end_page_cache(){
+     $key=md5('page'.request_uri());
+     $echo = ob_get_flush();
+     Cache::set($key,$echo);
+}
 

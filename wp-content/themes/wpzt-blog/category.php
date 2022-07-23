@@ -72,3 +72,6 @@
 
 <?php	
 	get_footer();
+	if(wpzt('category-cache')){
+    	end_page_cache();
+	}

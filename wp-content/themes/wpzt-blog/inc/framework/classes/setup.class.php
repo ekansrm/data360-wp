@@ -402,7 +402,7 @@ if( ! class_exists( 'CSF' ) ) {
       wp_enqueue_script( 'wp-color-picker' );
 
       // cdn styles
-      wp_enqueue_style( 'csf-fa', 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css', array(), '4.7.0', 'all' );
+      wp_enqueue_style( 'csf-fa', 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0', 'all' );
 
       // framework core styles
       wp_enqueue_style( 'csf', CSF::include_plugin_url( 'assets/css/csf'. $min .'.css' ), array(), '1.0.0', 'all' );

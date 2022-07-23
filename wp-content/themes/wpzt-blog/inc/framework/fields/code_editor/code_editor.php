@@ -43,12 +43,13 @@ if( ! class_exists( 'CSF_Field_code_editor' ) ) {
       if( in_array( csf_get_var( 'page' ), array( 'revslider' ) ) ) { return; }
 
       if( ! wp_script_is( 'csf-codemirror' ) ) {
-        wp_enqueue_script( 'csf-codemirror', $this->cdn_url . $this->version .'/lib/codemirror.min.js', array( 'csf' ), $this->version, true );
-        wp_enqueue_script( 'csf-codemirror-loadmode', $this->cdn_url . $this->version .'/addon/mode/loadmode.min.js', array( 'csf-codemirror' ), $this->version, true );
+        wp_enqueue_script( 'csf-codemirror', 
+       'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/codemirror/5.41.0/codemirror.min.js', array( 'csf' ), $this->version, true );
+        wp_enqueue_script( 'csf-codemirror-loadmode', 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/codemirror/5.41.0/addon/mode/loadmode.min.js', array( 'csf-codemirror' ), $this->version, true );
       }
 
       if( ! wp_style_is( 'csf-codemirror' ) ) {
-        wp_enqueue_style( 'csf-codemirror', $this->cdn_url . $this->version .'/lib/codemirror.min.css', array(), $this->version );
+        wp_enqueue_style( 'csf-codemirror', 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/codemirror/5.41.0/codemirror.min.css', array(), $this->version );
       }
 
     }

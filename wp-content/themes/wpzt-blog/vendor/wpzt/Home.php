@@ -2,6 +2,7 @@
 namespace wpzt;
 
 class Home{
+    const PID=2576;
 	function __construct(){
 		//CDN加速储存
 		if (wpzt('cdn_open')) {
@@ -52,7 +53,7 @@ class Home{
 			remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 			remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
 			//禁用REST API、移除wp-json链接
-			add_filter('rest_enabled', '_return_false');
+			add_filter('rest_enabled', '__return_false');
 			add_filter('rest_jsonp_enabled', '__return_false');
 			remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 			remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
@@ -93,33 +94,31 @@ class Home{
         return $html;
     }
 	
-	function image_alttitle( $imgalttitle ){
+	function image_alttitle( $content ){
         global $post;
         $category = get_the_category();
-        if(sizeof($category) > 0) {
-            $flname=$category[0]->cat_name;
-        } else {
-            $flname = 'none';
-        }
-        $btitle = get_bloginfo();
-        $imgtitle = $post->post_title;
+        $catname=$category[0]->cat_name;
+        $sitetitle = get_bloginfo();
+        $posttitle = $post->post_title;
         $imgUrl = "<img\s[^>]*src=(\"??)([^\" >]*?)\\1[^>]*>";
-        if(preg_match_all("/$imgUrl/siU",$imgalttitle,$matches,PREG_SET_ORDER)){
+        $siteurl=home_url();
+        if(preg_match_all("/$imgUrl/siU",$content,$matches,PREG_SET_ORDER)){
                 if( !empty($matches) ){
                         for ($i=0; $i < count($matches); $i++){
                                 $tag = $url = $matches[$i][0];
                                 $j=$i+1;
-                                $judge = '/title=/';
-								$url=preg_replace('/(title)|(title="[.]{0,}")/','',$url);
-								$url=preg_replace('/(alt)|(alt=\"[.]{0,}\")/','',$url);                           
-                                $altURL = ' alt="'.$imgtitle.' ('. network_site_url( '/' ).') '.$flname.' 第'.$j.'张" title="'.$imgtitle.' '.$flname.' 第'.$j.'张-'.$btitle.'" ';
+							    $url=preg_replace("/(alt='[^']{0,}')|(title='[^']{0,}')/",'',$url);
+							    $url=preg_replace('/(alt="[^"]{0,}")|(title="[^"]{0,}")/','',$url);
+							    $url=preg_replace('/(alt)|(title)/','',$url); 
+                                $altURL=" alt='{$posttitle}_{$siteurl}_{$catname}_第{$j}张' title='{$posttitle}_{$catname}_第{$j}张_{$sitetitle}'";
                                 $url = rtrim($url,'>');
-                                $url .= $altURL.'>';
-                                $imgalttitle = str_replace($tag,$url,$imgalttitle);
+                                $url=rtrim($url,'/');
+                                $url .= $altURL.'/>';
+                                $content = str_replace($tag,$url,$content);
                         }
                 }
         }
-        return $imgalttitle;
+        return $content;
 }
 	
 	function searchone() {
@@ -275,7 +274,7 @@ class Home{
 	}
 
 	function get_wpzt_haha(){
-		$hostname=$_SERVER['SERVER_NAME'];
+		$hostname=get_hostname();
 		if(\wpzt\Cache::get('wpzt_hehe')){//记录一下时间
 			return;	
 		}else{
@@ -295,7 +294,7 @@ class Home{
 				 if($host!=$hostname){
 					 $this->get_haha_info();
 				 }
-				 if($rc['pid']!=2576){
+				 if($rc['pid']!=self::PID){
 					 delete_option('wpzt_hehe');
 					 wp_die(base64_decode('6K+35Y67PGEgaHJlZj0iaHR0cDovL3d3dy53cHp0Lm5ldCI+5Li76aKY55uS5a2Q5pu05o2i5o6I5p2D5Z+f5ZCNPC9hPg=='));
 				 }
@@ -307,10 +306,10 @@ class Home{
 	}
 	
 	function get_haha_info(){
-		$hostname=$_SERVER['SERVER_NAME'];
+		$hostname=get_hostname();
 		$url="https://www.wpzt.net/wp-json/wpzt/v1/checkauth";
 		$request = new \WP_Http;
-		$data=['pid'=>2576,'host'=>$hostname];
+		$data=['pid'=>self::PID,'host'=>$hostname];
 		$result=$request->request($url,['method'=>'POST','body'=>$data,'headers'=>['application/json']]);
 		if(is_wp_error($result)){
 					
@@ -318,7 +317,7 @@ class Home{
 		}else{
 			$result=json_decode($result['body'],true);
 			if($result['code']==1){
-					$hehe_str=['host'=>$hostname,'time'=>time(),'pid'=>2576];
+					$hehe_str=['host'=>$hostname,'time'=>time(),'pid'=>self::PID];
 					update_option('wpzt_hehe',$hehe_str);
 					\wpzt\Cache::set('wpzt_hehe',$hehe_str);
 				}else{
@@ -329,17 +328,17 @@ class Home{
 	}
 	
 	function set_haha_info(){
-		$hostname=$_SERVER['SERVER_NAME'];
+		$hostname=get_hostname();
 		$url="https://www.wpzt.net/wp-json/wpzt/v1/checkauth";
 		$request = new \WP_Http;
-		$data=['pid'=>2576,'host'=>$hostname];
+		$data=['pid'=>self::PID,'host'=>$hostname];
 		$result=$request->request($url,['method'=>'POST','body'=>$data,'headers'=>['application/json']]);
 		if(is_wp_error($result)){
 			return;
 		}else{
 			$result=json_decode($result['body'],true);
 			if($result['code']==1){
-				$hehe_str=['host'=>$hostname,'time'=>time(),'pid'=>2576];
+				$hehe_str=['host'=>$hostname,'time'=>time(),'pid'=>self::PID];
 				update_option('wpzt_hehe',$hehe_str);
 				\wpzt\Cache::set('wpzt_hehe',$hehe_str);
 			}

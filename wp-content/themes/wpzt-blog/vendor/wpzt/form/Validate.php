@@ -50,4 +50,29 @@ class Validate{
 		}
 	}
 	
+	public static function  isImg($file) {
+		$allow=['jpg','jpeg','png','gif'];
+		$ext=array_pop(explode('.',$file['name']));	
+		if(!in_array($ext,$allow)){
+			return false;
+		}
+		$fileName=$file["tmp_name"];
+		$file = fopen($fileName, "rb");
+		$bin = fread($file, 2); // 只读2字节
+		fclose($file);
+		$strInfo = @unpack("C2chars", $bin);
+		$typeCode = intval($strInfo['chars1'] . $strInfo['chars2']);
+		
+		if ($typeCode == 255216) {//jpg
+			return true;
+		} elseif ($typeCode == 7173) {//gif
+			return true;
+		} elseif ($typeCode == 13780) {//png
+			return true;
+		} else {
+			return false;
+		}
+		return false;
+	}
+	
 }

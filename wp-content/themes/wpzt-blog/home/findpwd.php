@@ -1,6 +1,3 @@
-<?php 
-
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,7 +40,7 @@
 			</div>
 			<div class="backhome"><a href="<?php echo home_url();?>">返回首页</a><span>|</span>技术支持：wpzt.net</div>
 		</div>
-		<?php wp_footer();?>
+	
 		<script src="<?php echo WPZT_JS;?>/jquery.min.js"></script>
 		<script src="<?php echo WPZT_JS?>/letan.js"></script>
 		<script src="<?php echo WPZT_JS?>/jquery.validate.js"></script>

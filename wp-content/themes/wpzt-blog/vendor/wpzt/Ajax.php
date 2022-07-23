@@ -40,6 +40,10 @@ class Ajax{		//ajax处理
 		//投稿
 		add_action('wp_ajax_save_post',array($this,'save_post'));
 		add_action('wp_ajax_delete_post',array($this,'delete_post'));
+		
+			//首页ajax
+		add_action('wp_ajax_index_load_posts',array($this,'index_load_posts'));
+		add_action('wp_ajax_nopriv_index_load_posts',array($this,'index_load_posts'));
 	}
 	
 	
@@ -195,10 +199,8 @@ class Ajax{		//ajax处理
 	function uploadavatar(){//头像上传
 		$file=Req::files('avatar');
 		if($file){
-			$allow=['jpg','jpeg','png','gif'];
-			$ext=array_pop(explode('.',$file['name']));
-			if(!in_array($ext,$allow)){
-				wp_send_json(['code'=>0,'msg'=>'上传文件格式必须为png,jpg,jpeg']);
+		if(!Val::isImg($file)){
+				wp_send_json(['code'=>0,'msg'=>'请上传jpg,png,gif图片']);
 			}
 			$allowsize=500*1024;
 			if($file['size']>$allowsize){
@@ -225,10 +227,8 @@ class Ajax{		//ajax处理
 	function uploadcover(){
 		$file=Req::files('cover');
 		if($file){
-			$allow=['jpg','jpeg','png','gif'];
-			$ext=array_pop(explode('.',$file['name']));
-			if(!in_array($ext,$allow)){
-				wp_send_json(['code'=>0,'msg'=>'上传文件格式必须为png,jpg,jpeg']);
+		if(!Val::isImg($file)){
+				wp_send_json(['code'=>0,'msg'=>'请上传jpg,png,gif图片']);
 			}
 			$allowsize=500*1024;
 			if($file['size']>$allowsize){
@@ -490,6 +490,46 @@ class Ajax{		//ajax处理
 		}
 	}
 	
-
+	function index_load_posts(){	//首页ajax加载
+		$page=Req::post('page');
+		$page=intval(wpzt_Dec($page))+1;
+		$args=['paged'=>$page,'order'=>"DESC",'post_status' => array( 'publish' )];
+		$the_query=get_cache_query($args);
+		$str="";
+		if($the_query->have_posts()){
+				$have_page=2;//没有页面
+			if($the_query->max_num_pages>$page){//判断有没有更多
+				$have_page=1;
+			}
+			while($the_query->have_posts()){
+				$the_query->the_post();
+				$pid=get_the_ID();
+				$link=get_the_permalink();
+				$time=get_the_time("Y-m-d H:i:s");
+				$title=get_the_title();
+				$excerpt=get_the_excerpt();
+				$img=get_post_img(155,105);
+				$timeago=timeago($time);
+				$views=get_views($pid);
+				$str.="<div class='homebk4-item'>
+							<div class='homebk4-img'>	
+							<a href='{$link}' title='{$title}'><img src='{$img}' alt='{$title}'></a></div>
+							<div class='homebk4-title'>
+							<h3><a href='{$link}' title='{$title}'>{$title}</a></h3>
+							<p>{$excerpt}</p>
+							<div class='homebk4-date'>
+							<span time='{$time}'><i class='iconfont icon-shijian'></i>{$timeago}</span>
+							<span><i class='iconfont icon-yanjing'></i>{$views}</span>
+							</div>
+							</div>
+							</div>";
+				
+			}
+			wp_reset_postdata();
+		}
+		$res=['code'=>1,'str'=>$str,'page'=>wpzt_Enc($page),'have_page'=>$have_page];
+		wp_send_json($res);
+	}
+		
 	
 }

@@ -75,3 +75,27 @@ try{
    try{
 		$("#shareqr").qrcode({render:"canvas",width: 150,height:150,text:location.href});
 	}catch(error){}
+	
+		$(".load-more").click(function(){
+		var page=$(this).data('page');
+		if($(".load-more").text()!="点击查看更多"){
+			return;
+		}
+		$(".load-more").text("加载中……");
+		var option={};
+		var param={page:page,action:"index_load_posts"}
+		option.success=function(res){
+			if(res.code==1){
+				$(".load-more").data("page",res.page);
+				$(".load-more").parent().parent().prev().append(res.str);
+				if(res.have_page==1){
+					$(".load-more").text("点击查看更多");
+				}else{
+					$(".load-more-wrap").hide();
+				}
+			}else{
+				letan.tip("获取内容失败");
+			}
+		}
+		letan.call(ajaxurl,param,option);
+	})

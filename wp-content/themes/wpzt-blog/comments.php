@@ -1,11 +1,15 @@
 <?php
+    if (post_password_required()) {
+			return;	
+		}
+		if(get_option('default_comment_status')!="open"){
+			return;
+		}
 	add_js('wangeditor');
 	add_js('jquery.validate');
 	add_js('comment');
 	global $current_user;
-	if ( post_password_required() ) {
-			return;	
-		}
+
 		add_filter('comment_form_default_fields', 'wpzt_comment_remove_fields'); 
 		function wpzt_comment_remove_fields($fields) {
 			if(isset($fields['url'])){

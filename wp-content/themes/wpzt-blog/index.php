@@ -1,13 +1,16 @@
 <?php
  get_header();
  add_js('index');
+
  ?>
+ 
  <div class='container homebody mt15'>
 	<!-----左侧边栏菜单------->
 	<?php get_template_part('template-parts/common/sidemenu');?>
 	<!---首页板块---->
 	 <div class='homebk-ctn'>
 		<?php
+	//	 if(!begin_page_cache()){
 			$mods=wpzt('home_mod');
 			if(!empty($mods)){
 				foreach($mods as $mod){
@@ -18,9 +21,12 @@
 						case '4':require locate_template('template-parts/index/mod-4.php');break;
 						case '5':require locate_template('template-parts/index/mod-5.php');break;
 						case '6':require locate_template('template-parts/index/mod-ad.php');break;
+						case '7':require locate_template('template-parts/index/mod-7.php');break;
 					}
 				}
 			}
+	//	 }
+   //    end_page_cache();
 		?>
 		
 	 </div>
@@ -34,4 +40,8 @@
 	 </div>
 
 <?php
+
  get_footer();
+ if(wpzt('home-cache')){
+    end_page_cache();
+ }

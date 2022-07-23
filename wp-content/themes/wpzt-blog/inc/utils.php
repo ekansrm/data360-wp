@@ -364,3 +364,9 @@
 	function get_edit_post($pid){
 		return add_query_arg(['pid'=>$pid],home_url('sendpost'));
 	}
+	
+	function get_hostname(){
+	    $siteurl=get_option('siteurl');
+	    $host=parse_url($siteurl);
+	    return $host['host'];
+	}

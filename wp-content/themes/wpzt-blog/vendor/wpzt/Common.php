@@ -161,7 +161,9 @@ class Common{
 	
 
 	function wp_do_output_buffer() {	//!!!!重要wp_redirect()出错问题解决
-		ob_start();
+	 if( begin_page_cache()){
+		        exit;
+		}
 	}
 	
 	

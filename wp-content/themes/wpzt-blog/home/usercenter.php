@@ -48,7 +48,7 @@
 	</form>
 	</div>
 	<?php
-		if(wpzt('open_wechat_login')&&wpzt('open_qq_login')&&wpzt('open_weibo_login')){
+		if(wpzt('open_wechat_login')||wpzt('open_qq_login')||wpzt('open_weibo_login')){
 	?>
 	<div class='pslinfo pslinfo-sq'>
 	 <div class='form-group wp-form-group'>

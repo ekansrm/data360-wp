@@ -4,7 +4,7 @@
 $prefix_post_opts = CS_POST_OPTION;
 CSF::createMetabox($prefix_post_opts, array(
     'title'     => '设置',
-    'post_type' => 'post',
+    'post_type' => ['post','page'],
     'data_type' => 'serialize',
     'priority'  => 'high',
 ));
