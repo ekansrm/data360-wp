@@ -139,12 +139,9 @@ function get_menu_array($menuslug){	//获取菜单树状数组
 		return Cache::get($key);
 	}else{
 		 $location=get_nav_menu_locations();
-        if(in_array($menuslug, $location)) {
-            $menu = wp_get_nav_menu_object($location[$menuslug]);
-            $menus=wp_get_nav_menu_items($menu->term_id);
-        } else {
-            $menus = [];
-        }
+		 $menu=wp_get_nav_menu_object($location[$menuslug]);
+		 $menus=wp_get_nav_menu_items($menu->term_id);
+		 $menuarray=[];
 		 $menulist=[];
 		 if($menus){
 			 foreach($menus as $k=>$v){
