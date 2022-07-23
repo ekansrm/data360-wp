@@ -134,16 +134,8 @@
 	
 	function tag_list($args,$instance){
 		$title=$instance['title'];
-        if(in_array('tag', $instance)) {
-            $tag=$instance['tag'];
-        } else {
-            $tag = null;
-        }
-        if(in_array('page', $instance)) {
-            $page=$instance['page'];
-        } else {
-            $page = null;
-        }
+		$tag=$instance['tag'];
+		$page=$instance['page'];
 		if(!empty($page)){
 			$tagurl=get_permalink($page);
 		}else{
@@ -218,8 +210,7 @@
 		]
 	));
 	function w_post_list($args,$instance){
-		global $cat;
-        global $tag;
+		
 		$title=$instance['title'];
 		$order=$instance['order'];
 		$view=$instance['view'];
