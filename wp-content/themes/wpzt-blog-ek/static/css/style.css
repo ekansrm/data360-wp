@@ -447,12 +447,12 @@ p,pre{margin:0;}
 .bgc-gray-f46{background-color:#f4f4f6;}/*偏蓝浅灰色灰色背景*/
 .bgc-bluegray{background-color:#172433;}/*深蓝灰色背景-更多使用于页脚*/
 .bgc-bluegray-00{background-color:#001328;}/*深蓝灰色接近黑色背景-更多使用于页脚*/
-.bgopc-black-03{background-color:rdb(0,0,0,0.3);}/*黑色背景透明度0.3*/
-.bgopc-black-05{background-color:rdb(0,0,0,0.5);}
-.bgopc-black-07{background-color:rdb(0,0,0,0.7);}
-.bgopc-white-03{background-color:rdb(255,255,255,0.3);}/*白色背景透明度0.3*/
-.bgopc-white-05{background-color:rdb(255,255,255,0.5);}
-.bgopc-white-07{background-color:rdb(255,255,255,0.7);}
+/*.bgopc-black-03{background-color:rdb(0,0,0,0.3);}!*黑色背景透明度0.3*!*/
+/*.bgopc-black-05{background-color:rdb(0,0,0,0.5);}*/
+/*.bgopc-black-07{background-color:rdb(0,0,0,0.7);}*/
+/*.bgopc-white-03{background-color:rdb(255,255,255,0.3);}!*白色背景透明度0.3*!*/
+/*.bgopc-white-05{background-color:rdb(255,255,255,0.5);}*/
+/*.bgopc-white-07{background-color:rdb(255,255,255,0.7);}*/
 
 /*-------------------------------常用边框 ---------------------------------*/
 /*-------------------------------常用边框 ---------------------------------*/
@@ -1368,6 +1368,7 @@ blockquote{
 }
 .w-wznr-body p{
 	margin-bottom:20px;
+	text-indent:0px;
 	text-align: justify;
 }
 
