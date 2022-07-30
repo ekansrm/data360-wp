@@ -67,7 +67,18 @@
 			</div>
 			
 			  <div class="w-wznr-body">
-                 <?php the_content();?>
+<!--                 --><?php
+//                 function remove_the_vowels( $content ) {
+//                     $new = preg_replace( '#(?<=>)\s#', '&nbsp;', $content );
+//
+//                     echo $new;
+//                     return $content;
+//                 }
+//                 add_filter( 'the_content', 'remove_the_vowels', -100000);
+                 remove_filter('the_content','wpautop');
+                 remove_filter ('the_excerpt' ,'wpautop');
+                 the_content();
+                 ?>
 				 <?php wp_link_pages('before=<div id="content-links" class="w-fylink">&after=</div>&nextpagelink=下一页&previouspagelink=上一页'); ?>
 			   </div>
 			  
